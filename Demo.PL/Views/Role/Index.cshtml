@@ -1,0 +1,81 @@
+﻿@model IEnumerable<RoleViewModel>
+@{
+    ViewData["Title"] = "Index";
+}
+<h1>All Roles</h1>
+<br />
+<a asp-action="Create" class="btn btn-primary">Create New Role</a>
+<br />
+<br />
+
+@if (Model?.Count() > 0)
+{
+    <table class="table table-striped table-hover table-bordered">
+        <thead class="bg-dark text-white">
+            <tr>
+                <th>@Html.DisplayNameFor(x=>x.Id)</th>
+                <th>@Html.DisplayNameFor(x=>x.Name)</th>
+                <th>@Html.DisplayNameFor(x=>x.CreateAt)</th>
+                <th>Details</th>
+                <th>Update</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Id</td>
+                    <td>@item.Name</td>
+                    <td>@item.CreateAt</td>
+                    <partial name="_TableButtonsPartial" model="@item.Id" />
+
+                </tr>
+            }
+        </tbody>
+    </table>
+
+}
+else
+{
+    <div class="alert alert-warning">
+        <h3>No Roles Found!!</h3>
+    </div>
+}
+@section Scripts{
+    <script>
+        function deleteItem(id, el) {
+            Swal.fire({
+                title: "Do you Want To Delete Role",
+                showDenyButton: true,
+                confirmButtonText: "Yes",
+                denyButtonText: "No",
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.post("/Role/Delete", { 'id': id }, function (res) {
+                        if (res.message == "Success") {
+                            swal.fire({
+                                title: "Deleted Succesfully",
+                                html: res.message,
+                                timer: 2000,
+                                icon: "success"
+                            });
+
+                            // removing
+                            $(el).closest('tr').remove();
+                        } else {
+                            swal.fire({
+                                title: "Can't delete",
+                                html: res.message,
+                                icon: "error"
+                            });
+                        }
+                    });
+                } else if (result.isDenied) {
+                    swal.close();
+                }
+            })
+        }
+
+    </script>
+}

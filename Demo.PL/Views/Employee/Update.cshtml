@@ -1,0 +1,25 @@
+﻿@{
+    ViewData["Title"] = "Update";
+}
+<div class="row">
+    <div class="col-6">
+        <form asp-action="Update" asp-controller="Employee" enctype="multipart/form-data">
+            <Partial name="PartialViews/CreateOrUpdatePartialView" />
+            <div class="mt-2">
+                <button type="submit" class="btn btn-success">Update</button>
+                <a asp-action="Index" class="btn btn-light">Back To List</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" />
+    <script>
+        $(document).ready(function () {
+            $("#Image").on("change", function () {
+                fileToImageSource($(this)[0], $("#imagePreview"));
+            });
+        });
+    </script>
+}

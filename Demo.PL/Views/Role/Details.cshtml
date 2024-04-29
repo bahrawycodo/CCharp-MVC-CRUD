@@ -1,0 +1,11 @@
+﻿@model RoleViewModel
+
+<div class="form-group">
+    <label asp-for="@Model.Name" class="col-form-label"></label>
+    <input asp-for="@Model.Name" class="form-control" readonly />
+</div>
+
+<div class="mt-2">
+    <a asp-action="Update" asp-route-id="@Model.Id" class="btn btn-success">Update</a>
+    <a asp-action="Index" class="btn btn-light">Back To List</a>
+</div>

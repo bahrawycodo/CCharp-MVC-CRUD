@@ -1,0 +1,33 @@
+﻿@model LoginViewModel
+@{
+    ViewData["Title"] = "Login Page";
+    Layout = "_AuthLayout";
+}
+
+<form asp-action="Login">
+    <div asp-validation-summary="All" class="text-danger"></div>
+
+	<input class="text email" type="email" asp-for="@Model.Email" placeholder="Email" required="">
+	<span class="text-danger" asp-validation-for="@Model.Email"></span>
+	<input class="text password" type="password" asp-for="@Model.Password" placeholder="Password" required="">
+	<span class="text-danger" asp-validation-for="@Model.Password"></span>
+
+	<div class="wthree-text">
+		<label class="anim">
+			<input type="checkbox" class="checkbox" asp-for="@Model.RememberMe">
+			<span class="checkmark"></span>
+			<span>Remember Me</span>
+		</label>
+		<div class="clear"> </div>
+	</div>
+	<input type="submit" value="Login" />
+</form>
+<div class="row justify-content-between">
+	<div class="col-6">
+        <p>Don't have an Account? <a asp-action="SignUp"> Sign Up Now!</a></p>
+	</div>
+	<div class="col-6 mt-3">
+		<p><a asp-action="ForgetPassword">Forget Password?</a></p>
+	</div>
+</div>
+

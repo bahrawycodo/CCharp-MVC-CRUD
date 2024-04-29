@@ -1,0 +1,16 @@
+﻿<div class="row">
+    <div class="col-6">
+        <form asp-action="Update">
+            <partial name="PartialViews/CreateOrUpdatePartialView" />
+            <div class="mt-4">
+                <a asp-action="AddOrRemoveUsers" class="btn btn-info mb-2" asp-route-roleId="@Model.Id">Add Or Remove Users</a>
+                <br />
+                <button type="submit" class="btn btn-primary">Update</button>
+                <a asp-action="Index" class="btn btn-light">Back To List</a>
+            </div>
+        </form>
+    </div>
+</div>
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" />
+}

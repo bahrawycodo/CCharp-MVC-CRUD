@@ -1,0 +1,27 @@
+﻿@model SignUpViewModel
+@{
+    ViewData["Title"] = "Sign Up Page";
+    Layout = "_AuthLayout";
+}
+<form asp-action="SignUp">
+    <div asp-validation-summary="All" class="text-danger"></div>
+
+	<input class="text email" type="email" asp-for="@Model.Email"  placeholder="Email" required="">
+    <span class="text-danger" asp-validation-for="@Model.Email"></span>
+    <input class="text" type="password" asp-for="@Model.Password" placeholder="Password" required="">
+	<span class="text-danger" asp-validation-for="@Model.Password"></span>
+	<input class="text w3lpass" type="password" asp-for="@Model.ConfirmPassword" placeholder="Confirm Password" required="">
+	<span class="text-danger" asp-validation-for="@Model.ConfirmPassword"></span>
+
+	<div class="wthree-text">
+		<label class="anim">
+			<input type="checkbox" class="checkbox" required="">
+			<span class="checkmark"></span>
+			<span>I Agree To The Terms & Conditions</span>
+		</label>
+		<div class="clear"> </div>
+	</div>
+	<input type="submit" value="SIGNUP" />
+
+</form>
+<p>Have an Account? <a asp-action="Login"> Login Now!</a></p>
